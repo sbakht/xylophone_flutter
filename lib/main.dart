@@ -1,5 +1,4 @@
 import 'package:audioplayers/audio_cache.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(XylophoneApp());
@@ -12,6 +11,7 @@ class XylophoneApp extends StatelessWidget {
         body: SafeArea(
           child: Container(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Note(1, Colors.green),
                 Note(2, Colors.blue),
@@ -41,12 +41,15 @@ class Note extends StatefulWidget {
 class _NoteState extends State<Note> {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: () {
-        final player = AudioCache();
-        player.play('note${this.widget.note}.wav');
-      },
-      color: this.widget.color,
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          final player = AudioCache();
+          player.play('note${this.widget.note}.wav');
+        },
+        color: this.widget.color,
+        child: null,
+      ),
     );
   }
 }
